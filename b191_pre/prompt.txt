@@ -1,0 +1,2 @@
+Code Modification | Code Fix | Code Commenting
+this code has some kind of simulation, but I don't get it. refactor with meaningful names and add comments for each logical section, but not line by line. also fix to show state at start of each turn and include turn action. no other code fixes/changes. also give brief high-lev paragraph explaining purpose and how it works, no further analysis/etc.

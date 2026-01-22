@@ -1,0 +1,100 @@
+[
+  {
+    "rubric_id": "R01",
+    "rubric_content": "代码中的类名和变量名被重构为具有描述性的名称",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求将类名和变量名重构为有意义的名称。"
+  },
+  {
+    "rubric_id": "R02",
+    "rubric_content": "代码包含针对逻辑部分的注释（如方法说明、主要逻辑块说明）",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求添加针对逻辑部分的注释。"
+  },
+  {
+    "rubric_id": "R03",
+    "rubric_content": "代码没有包含逐行的冗余注释",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求避免逐行注释。"
+  },
+  {
+    "rubric_id": "R04",
+    "rubric_content": "在每一轮（turn）开始时显示当前的模拟状态（如队列等待情况、当前活跃的游乐设施）",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求在每一轮开始时显示状态。"
+  },
+  {
+    "rubric_id": "R05",
+    "rubric_content": "每一轮的输出中包含了该轮采取的具体行动描述（如分配了什么管道给谁，或无人分配）",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求包含每轮的行动描述。"
+  },
+  {
+    "rubric_id": "R06",
+    "rubric_content": "除了重命名、添加注释和修改输出显示外，没有改变模拟的核心逻辑（如优先级规则、等待时间等）",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "重构不应改变原有业务逻辑，且代码需保持可运行性。"
+  },
+  {
+    "rubric_id": "R07",
+    "rubric_content": "提供了一段简短的高层次（high-level）段落，解释代码的目的和工作原理",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求提供一段高层次的总结段落。"
+  },
+  {
+    "rubric_id": "R08",
+    "rubric_content": "提供的解释段落没有包含进一步的详细分析或无关内容",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目显式要求不包含进一步的详细分析。"
+  },
+  {
+    "rubric_id": "R09",
+    "rubric_content": "双人管道（Double tubes）的分配优先级逻辑被正确保留",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "重构不应改变原有业务逻辑，且代码需保持可运行性。"
+  },
+  {
+    "rubric_id": "R10",
+    "rubric_content": "元音字母开头的乘客（Vowel riders）的犹豫/跳过逻辑被正确保留",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "重构不应改变原有业务逻辑，且代码需保持可运行性。"
+  },
+  {
+    "rubric_id": "R11",
+    "rubric_content": "代码使用 Python 标准库 collections.deque 保持队列操作",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "重构不应改变原有业务逻辑，且代码需保持可运行性。"
+  },
+  {
+    "rubric_id": "R12",
+    "rubric_content": "代码可以正常运行并输出模拟结果",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "重构不应改变原有业务逻辑，且代码需保持可运行性。"
+  },
+  {
+    "rubric_id": "R13",
+    "rubric_content": "重构后的变量名风格符合 Python 的命名约定（snake_case）",
+    "type": "Coding Style",
+    "necessity": "Implicit",
+    "rationale": "遵循 Python 标准编码风格（PEP 8）是隐性要求。"
+  },
+  {
+    "rubric_id": "R14",
+    "rubric_content": "输出格式清晰，包含 'Turn X Start' 或类似标识，便于区分每一轮",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "清晰的输出格式有助于验证模拟过程。"
+  }
+]

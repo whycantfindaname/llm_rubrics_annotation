@@ -1,0 +1,72 @@
+[
+  {
+    "rubric_id": "R01",
+    "rubric_content": "代码完全遵循了题目中的所有显式重构要求：包括将类名和变量名重构为有意义的名称、添加逻辑部分的注释（非逐行）、在每一轮开始时显示状态、包含每轮的行动描述、以及提供一段高层次的总结段落。",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目中提出了一系列具体的重构指令，代码必须完整落实这些显性要求，任何遗漏都视为未完成任务。"
+  },
+  {
+    "rubric_id": "R02",
+    "rubric_content": "重构过程中保持了模拟器的核心逻辑完全不变（如双人管优先、元音犹豫规则等），未引入任何业务逻辑上的修改（允许将硬编码参数化，只要默认行为一致）。",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "代码重构的隐性前提是保持原有功能和逻辑的一致性。将硬编码值提取为参数是良好的重构习惯，只要在调用时（如 main 函数中）传入原值，保持了原有行为，则不应视为破坏核心逻辑。"
+  },
+  {
+    "rubric_id": "R03",
+    "rubric_content": "代码能够无错误地运行，并产生预期的模拟输出。",
+    "type": "Correctness",
+    "necessity": "Implicit",
+    "rationale": "代码的可执行性是任何编程任务的基本隐性要求。"
+  },
+  {
+    "rubric_id": "R04",
+    "rubric_content": "代码在函数定义中使用了 Python 类型提示（Type Hints）以增强代码的可读性和可维护性。",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "在高质量的 Python 代码重构中，添加类型提示是提升代码健壮性和可读性的标准最佳实践。"
+  },
+  {
+    "rubric_id": "R05",
+    "rubric_content": "代码使用 Python 的 Enum 类来定义管道类型（如 'single', 'double'），而不是使用硬编码的字符串字面量。",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "使用枚举（Enum）代替字符串字面量可以防止拼写错误并提高代码的可维护性，是高质量代码的体现。"
+  },
+  {
+    "rubric_id": "R06",
+    "rubric_content": "代码将魔法数值（如元音集合 'AEIOU'、最大跳过次数等）定义为类常量或模块级常量，而不是在逻辑中硬编码。",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "提取魔法数值为常量是重构的基本原则之一，有助于提高代码的可读性和易修改性。"
+  },
+  {
+    "rubric_id": "R07",
+    "rubric_content": "代码的文档字符串遵循标准的结构化格式（如 Google 或 NumPy 风格），包含 Args 和 Returns 的详细说明。",
+    "type": "Documentation & Comments",
+    "necessity": "Implicit",
+    "rationale": "高质量的代码应包含规范的文档字符串，明确说明函数的输入输出，而不仅仅是简略的描述。"
+  },
+  {
+    "rubric_id": "R08",
+    "rubric_content": "代码风格严格遵循 PEP 8 规范（如变量命名 snake_case，缩进，空格使用等）。",
+    "type": "Coding Style",
+    "necessity": "Implicit",
+    "rationale": "遵循 PEP 8 是 Python 社区的通用隐性标准，确保代码风格的一致性。"
+  },
+  {
+    "rubric_id": "R09",
+    "rubric_content": "代码正确使用了 Python 标准库且没有引入不必要的第三方依赖。",
+    "type": "Efficiency & performance",
+    "necessity": "Implicit",
+    "rationale": "合理使用标准库是 Python 编程的高效实践，隐性要求代码应保持轻量和高效。"
+  },
+  {
+    "rubric_id": "R10",
+    "rubric_content": "输出格式清晰、一致，易于阅读和解析（例如使用 f-string 进行格式化输出）。",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "良好的输出格式能提升用户体验，虽然题目只要求显示状态，但清晰的格式是隐性的质量要求。"
+  }
+]

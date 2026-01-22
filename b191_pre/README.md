@@ -1,1 +1,2 @@
 This project has no special dependencies or version requirements. Unzip the archive and run the following command from the main project folder:  python .\main.py
+b191_pre主要采用Python 标准库（collections.deque和面向对象设计（Sim 类），实现一了个基于队列的模拟器（Sim），用于处理带有特定规则（如元音字母开头）的资源分配和状态管理，旨在解决在有限资源（如 ns 和 nd）下，对队列中的项目进行优先级调度和计时处理的问题，模拟“服务”和“延迟”两种操作。
