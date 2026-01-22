@@ -1,0 +1,86 @@
+[
+  {
+    "rubric_id": "R01",
+    "rubric_content": "代码中的类名和变量名被重构为具有描述性的名称",
+    "score": "1",
+    "rationale": "代码将 Sim 重命名为 TubeRideSimulation，将 ns, nd 等变量重命名为 num_single_tubes, num_double_tubes 等，名称具有清晰的描述性，满足要求。"
+  },
+  {
+    "rubric_id": "R02",
+    "rubric_content": "代码包含针对逻辑部分的注释（如方法说明、主要逻辑块说明）",
+    "score": "1",
+    "rationale": "代码添加了详细的文档字符串（docstrings）和逻辑块注释（如 # Priority: Check for double tubes first），满足要求。"
+  },
+  {
+    "rubric_id": "R03",
+    "rubric_content": "代码没有包含逐行的冗余注释",
+    "score": "1",
+    "rationale": "注释主要针对逻辑块和方法说明，没有出现逐行解释代码的冗余注释，满足要求。"
+  },
+  {
+    "rubric_id": "R04",
+    "rubric_content": "在每一轮（turn）开始时显示当前的模拟状态（如队列等待情况、当前活跃的游乐设施）",
+    "score": "1",
+    "rationale": "在 run 方法的循环中，每一轮开始都调用了 display_status 打印当前 Line 和 Active Rides 状态，满足要求。"
+  },
+  {
+    "rubric_id": "R05",
+    "rubric_content": "每一轮的输出中包含了该轮采取的具体行动描述（如分配了什么管道给谁，或无人分配）",
+    "score": "1",
+    "rationale": "run_turn 方法返回了 action_taken 字符串，并在 run 方法中打印了该行动描述，满足要求。"
+  },
+  {
+    "rubric_id": "R06",
+    "rubric_content": "除了重命名、添加注释和修改输出显示外，没有改变模拟的核心逻辑（如优先级规则、等待时间等）",
+    "score": "1",
+    "rationale": "代码保留了双人管优先、元音犹豫等核心逻辑，变量重命名属于重构范畴，未引入非必要的逻辑变更，满足要求。"
+  },
+  {
+    "rubric_id": "R07",
+    "rubric_content": "提供了一段简短的高层次（high-level）段落，解释代码的目的和工作原理",
+    "score": "1",
+    "rationale": "在类 TubeRideSimulation 的文档字符串中提供了一段清晰的高层解释，说明了模拟器的目的和规则，满足要求。"
+  },
+  {
+    "rubric_id": "R08",
+    "rubric_content": "提供的解释段落没有包含进一步的详细分析或无关内容",
+    "score": "1",
+    "rationale": "提供的解释仅限于类文档字符串中的描述，未包含额外的详细分析或无关文本，满足要求。"
+  },
+  {
+    "rubric_id": "R09",
+    "rubric_content": "双人管道（Double tubes）的分配优先级逻辑被正确保留",
+    "score": "1",
+    "rationale": "代码中依然优先检查 available_double_tubes > 0 并分配，保留了优先级逻辑，满足要求。"
+  },
+  {
+    "rubric_id": "R10",
+    "rubric_content": "元音字母开头的乘客（Vowel riders）的犹豫/跳过逻辑被正确保留",
+    "score": "1",
+    "rationale": "代码保留了 is_vowel_rider 检查和 wait_skips 计数逻辑，犹豫机制未变，满足要求。"
+  },
+  {
+    "rubric_id": "R11",
+    "rubric_content": "代码使用 Python 标准库 collections.deque 保持队列操作",
+    "score": "1",
+    "rationale": "代码依然使用 collections.deque 来管理乘客队列，满足要求。"
+  },
+  {
+    "rubric_id": "R12",
+    "rubric_content": "代码可以正常运行并输出模拟结果",
+    "score": "1",
+    "rationale": "代码结构完整，包含 main 函数入口，逻辑通顺，可以正常运行，满足要求。"
+  },
+  {
+    "rubric_id": "R13",
+    "rubric_content": "重构后的变量名风格符合 Python 的命名约定（snake_case）",
+    "score": "1",
+    "rationale": "重构后的变量名如 num_single_tubes, run_turn 等均遵循 snake_case 命名约定，满足要求。"
+  },
+  {
+    "rubric_id": "R14",
+    "rubric_content": "输出格式清晰，包含 'Turn X Start' 或类似标识，便于区分每一轮",
+    "score": "1",
+    "rationale": "输出中包含 'Turn {turn} Start:' 和分隔线，格式清晰，满足要求。"
+  }
+]

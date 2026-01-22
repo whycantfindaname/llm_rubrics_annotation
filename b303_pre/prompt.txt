@@ -1,0 +1,16 @@
+Code Creation
+You are working with a FastAPI project, which is currently a simple app with a few routes. Your task is to implement custom middleware to log all HTTP requests and responses.
+
+Your middleware must:
+
+- Log the HTTP method, path, response status code, and duration in milliseconds
+- Exclude requests for static files (i.e., those under `/static` or ending in `.html`)
+- Use `print()` for logging (do not import or configure the `logging` module)
+- Do not modify any unrelated code
+
+You are provided with the following files:
+
+- `app/main.py` — contains the FastAPI app setup
+- `app/middleware.py` — currently empty (except for comments), where the middleware should be written
+
+Implement the logging middleware and ensure it is properly registered in `main.py`.

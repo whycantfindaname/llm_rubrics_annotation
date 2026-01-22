@@ -1,0 +1,100 @@
+[
+  {
+    "rubric_id": "R01",
+    "rubric_content": "中间件必须记录 HTTP 请求方法 (Method)",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Log the HTTP method'，这是核心功能需求。"
+  },
+  {
+    "rubric_id": "R02",
+    "rubric_content": "中间件必须记录请求路径 (Path)",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Log the ... path'，这是核心功能需求。"
+  },
+  {
+    "rubric_id": "R03",
+    "rubric_content": "中间件必须记录响应状态码 (Response status code)",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Log the ... response status code'，这是核心功能需求。"
+  },
+  {
+    "rubric_id": "R04",
+    "rubric_content": "中间件必须记录请求处理耗时 (Duration)",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Log the ... duration'，这是核心功能需求。"
+  },
+  {
+    "rubric_id": "R05",
+    "rubric_content": "耗时必须以毫秒 (milliseconds) 为单位",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'duration in milliseconds'。"
+  },
+  {
+    "rubric_id": "R06",
+    "rubric_content": "中间件必须排除以 `/static` 开头的请求",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Exclude requests for static files (i.e., those under /static ...)'。"
+  },
+  {
+    "rubric_id": "R07",
+    "rubric_content": "中间件必须排除以 `.html` 结尾的请求",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Exclude requests ... ending in .html'。"
+  },
+  {
+    "rubric_id": "R08",
+    "rubric_content": "中间件必须使用 `print()` 函数进行日志输出",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'Use print() for logging'。"
+  },
+  {
+    "rubric_id": "R09",
+    "rubric_content": "中间件代码中不得导入或配置 `logging` 模块",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求 'do not import or configure the logging module'。"
+  },
+  {
+    "rubric_id": "R10",
+    "rubric_content": "中间件必须在 `app/main.py` 中正确注册到 FastAPI 应用",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目要求 'ensure it is properly registered in main.py'。"
+  },
+  {
+    "rubric_id": "R11",
+    "rubric_content": "建议使用 `time.perf_counter()` 或 `time.monotonic()` 进行高精度计时",
+    "type": "Efficiency & performance",
+    "necessity": "Implicit",
+    "rationale": "虽然题目未强制，但测量短时间间隔（请求耗时）应优先使用高精度的 perf_counter 而非易受系统时间影响的 time.time。这可以区分不同模型的代码质量。"
+  },
+  {
+    "rubric_id": "R12",
+    "rubric_content": "对于被排除的静态文件请求，应采用“提前返回 (Early Return)”策略，即在计时开始前直接返回",
+    "type": "Efficiency & performance",
+    "necessity": "Implicit",
+    "rationale": "如果请求不需要记录日志，则进行计时和计算耗时是无意义的资源浪费。提前返回能提高效率。这是一个区分模型优化能力的关键点。"
+  },
+  {
+    "rubric_id": "R13",
+    "rubric_content": "中间件实现建议使用函数装饰器 (`@app.middleware` 或相关模式) 或 `BaseHTTPMiddleware` 类",
+    "type": "Coding Style",
+    "necessity": "Implicit",
+    "rationale": "FastAPI 支持多种中间件写法。虽然两者都正确，但识别不同的实现模式有助于代码风格分析。此处主要用于确认代码结构合理性。"
+  },
+  {
+    "rubric_id": "R14",
+    "rubric_content": "日志输出格式应清晰易读，包含必要的单位标识（如 'ms'）",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "虽然题目只说了内容，但良好的日志格式（如 '20.5ms'）比纯数字更易读。"
+  }
+]

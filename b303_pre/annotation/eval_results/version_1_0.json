@@ -1,0 +1,62 @@
+[
+  {
+    "rubric_id": "R01",
+    "rubric_content": "代码完全遵循了题目中的所有显式重构要求：包括将类名和变量名重构为有意义的名称、添加逻辑部分的注释（非逐行）、在每一轮开始时显示状态、包含每轮的行动描述、以及提供一段高层次的总结段落。",
+    "score": "1",
+    "rationale": "已将类与变量重命名为更有意义的名称（如 TubeRideSimulation、available_single_tubes 等），并通过类/方法文档字符串与逻辑块注释解释关键逻辑；run() 在每轮开始先打印状态（Turn X Start 与 Line/Active Rides），随后输出本轮 Action；类文档字符串提供了高层次目的与工作方式概述。"
+  },
+  {
+    "rubric_id": "R02",
+    "rubric_content": "重构过程中保持了模拟器的核心逻辑完全不变（如双人管优先、元音犹豫规则等），未引入任何业务逻辑上的修改。",
+    "score": "1",
+    "rationale": "仍然保持“优先分配双人管、否则分配单人管；元音开头乘客可犹豫跳过最多两次；骑行结束后回到队尾并释放管道”等核心规则，改动主要集中在命名、结构化输出与注释增强，未新增或更改业务规则。"
+  },
+  {
+    "rubric_id": "R03",
+    "rubric_content": "代码能够无错误地运行，并产生预期的模拟输出。",
+    "score": "1",
+    "rationale": "文件包含可执行入口 main() 并能运行完成模拟循环，输出每轮开始的状态与对应行动描述，未出现语法或运行时错误。"
+  },
+  {
+    "rubric_id": "R04",
+    "rubric_content": "代码在函数定义中使用了 Python 类型提示（Type Hints）以增强代码的可读性和可维护性。",
+    "score": "0",
+    "rationale": "函数/方法定义未添加类型注解（如 __init__、run_turn、run 等均无参数与返回值类型标注）。"
+  },
+  {
+    "rubric_id": "R05",
+    "rubric_content": "代码使用 Python 的 Enum 类来定义管道类型（如 'single', 'double'），而不是使用硬编码的字符串字面量。",
+    "score": "0",
+    "rationale": "管道类型仍以字符串字面量表示（如 'single'、'double'），未使用 Enum 进行集中定义。"
+  },
+  {
+    "rubric_id": "R06",
+    "rubric_content": "代码将魔法数值（如元音集合 'AEIOU'、最大跳过次数等）定义为类常量或模块级常量，而不是在逻辑中硬编码。",
+    "score": "0",
+    "rationale": "元音集合仍直接在初始化中通过 set('AEIOU') 构造，最大跳过次数等也未抽取为模块/类常量（例如 main 中仍直接传入 2）。"
+  },
+  {
+    "rubric_id": "R07",
+    "rubric_content": "代码的文档字符串遵循标准的结构化格式（如 Google 或 NumPy 风格），包含 Args 和 Returns 的详细说明。",
+    "score": "0",
+    "rationale": "虽添加了文档字符串，但未采用 Google/NumPy 等结构化格式，且缺少规范的 Args/Returns 分节说明。"
+  },
+  {
+    "rubric_id": "R08",
+    "rubric_content": "代码风格严格遵循 PEP 8 规范（如变量命名 snake_case，缩进，空格使用等）。",
+    "score": "0",
+    "rationale": "虽大体采用了较规范的命名与缩进，但存在明显的 PEP 8 严格性问题（例如部分函数签名/长字符串行长度过长），因此不满足“严格遵循”。"
+  },
+  {
+    "rubric_id": "R09",
+    "rubric_content": "代码正确使用了 Python 标准库且没有引入不必要的第三方依赖。",
+    "score": "1",
+    "rationale": "仅使用 collections.deque 等标准库能力来维护队列与模拟状态，未引入任何第三方依赖。"
+  },
+  {
+    "rubric_id": "R10",
+    "rubric_content": "输出格式清晰、一致，易于阅读和解析（例如使用 f-string 进行格式化输出）。",
+    "score": "1",
+    "rationale": "每轮输出包含清晰的轮次标题、Line/Active Rides 状态与 Action 行，并使用 f-string 统一格式化，且用分隔线分隔轮次，便于阅读与解析。"
+  }
+]

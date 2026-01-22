@@ -1,0 +1,200 @@
+[
+  {
+    "rubric_id": "1",
+    "rubric_content": "修复后的库必须正确识别并处理@JsonKey注解中fromJson和toJson方法签名上的泛型参数，保留完整的泛型信息。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "题目明确指出Bug之一是无法识别@JsonKey的toJson/fromJson方法上的泛型，这是核心显性功能要求，直接关系到任务成功，通过检查修复代码是否更新了类型解析逻辑以及生成的序列化代码是否保留泛型可静态验证。"
+  },
+  {
+    "rubric_id": "2",
+    "rubric_content": "对于提供的@JsonKey最小可复现示例，修复后生成的$SerializableFromJson函数必须正确调用fromJson<T>(json)，并保留泛型T。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "题目提供了具体的@JsonKey最小可复现示例，该示例的正确反序列化是验证修复是否成功的直接证据，属于显性功能要求，通过检查修复后对该示例生成的代码是否正确传递泛型T可静态验证。"
+  },
+  {
+    "rubric_id": "3",
+    "rubric_content": "对于提供的@JsonKey最小可复现示例，修复后生成的$SerializableToJson函数必须正确调用toJson<T>(a)，并保留泛型T。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "与反序列化对称，题目提供的示例要求toJson也支持泛型，这是显性功能要求的一部分，通过检查生成的序列化代码是否正确传递泛型T可静态验证。"
+  },
+  {
+    "rubric_id": "4",
+    "rubric_content": "修复后的库必须正确识别并处理JsonConverter子类声明中的泛型参数（如SlugConverter<T> extends JsonConverter<Slug<T>, String>）。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "题目明确指出Bug之一是无法识别JsonConverter上的泛型，这是核心显性功能要求，通过检查修复代码是否正确解析JsonConverter的泛型声明可静态验证。"
+  },
+  {
+    "rubric_id": "5",
+    "rubric_content": "对于提供的JsonConverter最小可复现示例，修复后生成的代码必须实例化converter为const SlugConverter<T>()，使用类上的泛型T。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "题目提供了具体的JsonConverter示例，正确实例化带泛型的converter是验证修复成功的关键证据，属于显性功能要求，通过检查对该示例生成的代码可静态验证。"
+  },
+  {
+    "rubric_id": "6",
+    "rubric_content": "修复后生成的序列化/反序列化代码在处理带泛型converter的字段时，不包含dynamic类型转换。",
+    "必要性": "Essential",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "正确处理泛型应保持类型安全，避免退化为dynamic，虽未显性说明但属于功能正确的隐性要求，通过检查生成的代码是否包含dynamic关键字可静态验证。"
+  },
+  {
+    "rubric_id": "7",
+    "rubric_content": "修复后，对提供的非泛型示例，生成的序列化/反序列化代码与修复前保持完全一致。",
+    "必要性": "Essential",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "Bug修复必须保持向后兼容和原有功能完整，这是库维护的隐性基本要求，通过比较修复前后对非泛型示例生成的代码是否相同可静态验证。"
+  },
+  {
+    "rubric_id": "8",
+    "rubric_content": "修复代码本身不引入新的编译错误或类型错误。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "修复后的库必须可编译，这是任何代码变更的隐性基本要求，通过检查修改后的库代码类型一致性可静态验证。"
+  },
+  {
+    "rubric_id": "9",
+    "rubric_content": "修复仅修改了类型解析相关的核心函数，未修改其他无关模块或进行无关重构。",
+    "必要性": "Important",
+    "评估维度": "风格（style）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "最小化变更更有助于降低风险和便于审查，虽未显性要求但对库维护重要，通过检查修改的文件和函数范围可静态验证。"
+  },
+  {
+    "rubric_id": "10",
+    "rubric_content": "修复代码不包含语法错误或基本的格式问题。",
+    "必要性": "Important",
+    "评估维度": "风格（style）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "代码的基本正确性是最低要求，虽未显性说明但属于隐性要求，通过编译检查可静态验证。"
+  },
+  {
+    "rubric_id": "11",
+    "rubric_content": "在关键修改处添加了注释，解释泛型处理的新逻辑。",
+    "必要性": "Important",
+    "评估维度": "风格（style）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "复杂类型解析变更需要注释以便未来维护，虽未显性要求但对代码可维护性重要，通过检查注释的存在可静态验证。"
+  },
+  {
+    "rubric_id": "12",
+    "rubric_content": "修复没有使用dynamic类型来绕过泛型检查，而是真正保留并传递泛型信息。",
+    "必要性": "Pitfall",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "使用dynamic是常见但错误的临时方案，会导致运行时类型不安全，是需要避免的典型陷阱，通过检查代码是否出现dynamic强制转换可静态验证。"
+  },
+  {
+    "rubric_id": "13",
+    "rubric_content": "修复没有通过硬编码特定类型（如A或Slug）来使示例通过，而是通用处理任意泛型。",
+    "必要性": "Pitfall",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "硬编码只能通过给定示例，无法解决一般性Bug，是常见错误修复方式，通过检查逻辑是否依赖特定类名可静态验证。"
+  },
+  {
+    "rubric_id": "14",
+    "rubric_content": "修复不改变json_serializable库的公共API（注解、参数等）。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "作为Bug修复，应保持API稳定以避免破坏现有用户代码，属于隐性但重要的兼容性要求，通过检查公共接口是否变更可静态验证。"
+  },
+  {
+    "rubric_id": "15",
+    "rubric_content": "修复逻辑正确处理了converter方法返回值/参数中的泛型（如A<T>），而不仅仅是方法泛型参数。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "示例中fromJson/toJson的返回和参数类型也包含泛型T，完整修复需要处理这些，属于显性功能要求的一部分，通过检查类型匹配逻辑可静态验证。"
+  },
+  {
+    "rubric_id": "16",
+    "rubric_content": "修复后生成的代码对示例类Serializable<T>的字段类型推断仍为A<T>或Slug<T>，未退化为非泛型。",
+    "必要性": "Essential",
+    "评估维度": "功能要求（functional requirement）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Explicit",
+    "rationale": "保持字段泛型类型是正确序列化的前提，题目示例依赖此行为，通过检查生成的类型声明可静态验证。"
+  },
+  {
+    "rubric_id": "17",
+    "rubric_content": "如果响应包含测试代码，则新增或更新测试必须覆盖两个提供的泛型最小可复现示例。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "虽然题目未强制要求测试，但为确保修复可靠，覆盖示例的测试很重要，属于隐性最佳实践，通过检查测试用例可静态验证。"
+  },
+  {
+    "rubric_id": "18",
+    "rubric_content": "修复支持类上多个泛型参数的情况（即使示例只有一个T）。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "实际使用中类可能有多个泛型参数，修复应具备通用性而非仅处理单泛型，虽未在示例中体现但对库鲁棒性重要，通过检查类型解析逻辑是否支持多泛型可静态验证。"
+  },
+  {
+    "rubric_id": "19",
+    "rubric_content": "修复正确处理泛型参数的边界约束（如<T extends SomeClass>），也就是需要提取和保留边界约束信息，不丢失bounds信息。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "Dart泛型常带有bounds，完整支持是库鲁棒性的隐性要求，虽示例无bounds但通用修复应覆盖，通过检查类型解析是否保留bounds可静态验证。"
+  },
+  {
+    "rubric_id": "20",
+    "rubric_content": "修复后生成的代码在处理嵌套泛型（如A<B<T>>）时仍保留完整类型信息。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "实际场景常出现嵌套泛型，修复应具备通用性避免仅处理单层泛型，通过检查类型解析深度可静态验证。"
+  },
+  {
+    "rubric_id": "21",
+    "rubric_content": "修复后，生成的代码不引入新的import语句。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "代码生成库常涉及import管理，变更不应导致生成的代码import错误，这是隐性但关键的稳定性要求，通过比较修复前后生成的代码import语句是否相同可静态验证。"
+  },
+  {
+    "rubric_id": "22",
+    "rubric_content": "修复保持与json_serializable现有配置选项（如genericArgumentFactories、explicitToJson等）的兼容性。",
+    "必要性": "Important",
+    "评估维度": "鲁棒性（robustness）",
+    "验证方式": "静态-模型验证",
+    "显性(Explicit)隐性（Implicit）": "Implicit",
+    "rationale": "库有多个配置选项，泛型修复不应干扰这些选项的正常行为，通过检查不同配置下的生成逻辑可静态验证。"
+  }
+]
