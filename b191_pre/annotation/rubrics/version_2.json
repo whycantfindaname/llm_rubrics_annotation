@@ -1,72 +1,107 @@
 [
   {
     "rubric_id": "R01",
-    "rubric_content": "代码完全遵循了题目中的所有显式重构要求：包括将类名和变量名重构为有意义的名称、添加逻辑部分的注释（非逐行）、在每一轮开始时显示状态、包含每轮的行动描述、以及提供一段高层次的总结段落。",
+    "rubric_content": "代码将原本简写的类名（如 Sim）和变量名（如 rs, ns, nd）重构为具有明确语义的有意义名称。",
     "type": "Instruction Following",
     "necessity": "Explicit",
-    "rationale": "题目中提出了一系列具体的重构指令，代码必须完整落实这些显性要求，任何遗漏都视为未完成任务。"
+    "rationale": "题目明确要求“refactor with meaningful names”，这是提升代码可读性的核心显性要求，直接对应题目指令。"
   },
   {
     "rubric_id": "R02",
-    "rubric_content": "重构过程中保持了模拟器的核心逻辑完全不变（如双人管优先、元音犹豫规则等），未引入任何业务逻辑上的修改（允许将硬编码参数化，只要默认行为一致）。",
-    "type": "Correctness",
-    "necessity": "Implicit",
-    "rationale": "代码重构的隐性前提是保持原有功能和逻辑的一致性。将硬编码值提取为参数是良好的重构习惯，只要在调用时（如 main 函数中）传入原值，保持了原有行为，则不应视为破坏核心逻辑。"
+    "rubric_content": "代码为每个逻辑部分添加了注释，且注释不是逐行的（not line by line），而是针对逻辑块的说明。",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求“add comments for each logical section, but not line by line”，旨在提升代码的可维护性，避免冗余注释。"
   },
   {
     "rubric_id": "R03",
-    "rubric_content": "代码能够无错误地运行，并产生预期的模拟输出。",
-    "type": "Correctness",
-    "necessity": "Implicit",
-    "rationale": "代码的可执行性是任何编程任务的基本隐性要求。"
+    "rubric_content": "代码在每一轮模拟开始时，能够显示当前的状态（如队列 Line 和进行中的骑行 Riders）。",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求“fix to show state at start of each turn”，这是确保模拟过程透明可视的显性功能点。"
   },
   {
     "rubric_id": "R04",
-    "rubric_content": "代码在函数定义中使用了 Python 类型提示（Type Hints）以增强代码的可读性和可维护性。",
-    "type": "Readability & Maintainability",
-    "necessity": "Implicit",
-    "rationale": "在高质量的 Python 代码重构中，添加类型提示是提升代码健壮性和可读性的标准最佳实践。"
+    "rubric_content": "代码在每一轮模拟中包含了具体的行动描述（turn action），明确说明了该轮发生了什么（如分配了什么管道给谁）。",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求“include turn action”，用于记录每轮的调度决策，是模拟输出的关键组成部分。"
   },
   {
     "rubric_id": "R05",
-    "rubric_content": "代码使用 Python 的 Enum 类来定义管道类型（如 'single', 'double'），而不是使用硬编码的字符串字面量。",
-    "type": "Readability & Maintainability",
-    "necessity": "Implicit",
-    "rationale": "使用枚举（Enum）代替字符串字面量可以防止拼写错误并提高代码的可维护性，是高质量代码的体现。"
+    "rubric_content": "代码提供了一段高层次的简短段落（brief high-lev paragraph），解释模拟器的目的和工作原理。",
+    "type": "Instruction Following",
+    "necessity": "Explicit",
+    "rationale": "题目明确要求“give brief high-lev paragraph explaining purpose and how it works”，这是对代码文档化的显性要求。"
   },
   {
     "rubric_id": "R06",
-    "rubric_content": "代码将魔法数值（如元音集合 'AEIOU'、最大跳过次数等）定义为类常量或模块级常量，而不是在逻辑中硬编码。",
-    "type": "Readability & Maintainability",
-    "necessity": "Implicit",
-    "rationale": "提取魔法数值为常量是重构的基本原则之一，有助于提高代码的可读性和易修改性。"
+    "rubric_content": "代码重构过程中保持了模拟器的核心业务逻辑完全不变（如双人管优先、元音犹豫规则等）。",
+    "type": "Correctness",
+    "necessity": "Explicit",
+    "rationale": "题目明确指出“no other code fixes/changes”，意味着除了重构和格式化外，必须严格保留原有的业务规则。"
   },
   {
     "rubric_id": "R07",
-    "rubric_content": "代码的文档字符串遵循标准的结构化格式（如 Google 或 NumPy 风格），包含 Args 和 Returns 的详细说明。",
-    "type": "Documentation & Comments",
+    "rubric_content": "代码能够无错误地运行，并产生完整的模拟输出。",
+    "type": "Correctness",
     "necessity": "Implicit",
-    "rationale": "高质量的代码应包含规范的文档字符串，明确说明函数的输入输出，而不仅仅是简略的描述。"
+    "rationale": "代码的可执行性是任何编程任务的基本底线，属于核心的隐性要求。"
   },
   {
     "rubric_id": "R08",
-    "rubric_content": "代码风格严格遵循 PEP 8 规范（如变量命名 snake_case，缩进，空格使用等）。",
-    "type": "Coding Style",
+    "rubric_content": "代码在函数和方法定义中使用了 Python 类型提示（Type Hints）。",
+    "type": "Readability & Maintainability",
     "necessity": "Implicit",
-    "rationale": "遵循 PEP 8 是 Python 社区的通用隐性标准，确保代码风格的一致性。"
+    "rationale": "类型提示是现代 Python 代码重构的重要实践，能显著提升代码的可读性和健壮性，虽未显性要求但属于高质量交付的标准。"
   },
   {
     "rubric_id": "R09",
-    "rubric_content": "代码正确使用了 Python 标准库且没有引入不必要的第三方依赖。",
-    "type": "Efficiency & performance",
+    "rubric_content": "代码使用 Python 的 Enum 类来定义管道类型（如 'single', 'double'），而非使用硬编码的字符串字面量。",
+    "type": "Readability & Maintainability",
     "necessity": "Implicit",
-    "rationale": "合理使用标准库是 Python 编程的高效实践，隐性要求代码应保持轻量和高效。"
+    "rationale": "使用枚举能避免拼写错误并统一状态管理，是优化代码结构的常见隐性要求。"
   },
   {
     "rubric_id": "R10",
-    "rubric_content": "输出格式清晰、一致，易于阅读和解析（例如使用 f-string 进行格式化输出）。",
+    "rubric_content": "代码将魔法数值（如元音集合 'AEIOU'、最大跳过次数等）定义为类常量或模块级常量。",
     "type": "Readability & Maintainability",
     "necessity": "Implicit",
-    "rationale": "良好的输出格式能提升用户体验，虽然题目只要求显示状态，但清晰的格式是隐性的质量要求。"
+    "rationale": "提取魔法数值是重构的基本原则，有助于提高代码的易读性和易修改性。"
+  },
+  {
+    "rubric_id": "R11",
+    "rubric_content": "代码的文档字符串（Docstrings）遵循标准的结构化格式（如 Google 或 NumPy 风格），包含 Args 和 Returns 的说明。",
+    "type": "Documentation & Comments",
+    "necessity": "Implicit",
+    "rationale": "规范的文档字符串是高质量代码的重要组成部分，有助于他人理解接口定义。"
+  },
+  {
+    "rubric_id": "R12",
+    "rubric_content": "代码风格严格遵循 PEP 8 规范（如变量命名 snake_case，缩进，空格使用等）。",
+    "type": "Coding Style",
+    "necessity": "Implicit",
+    "rationale": "PEP 8 是 Python 社区通用的代码风格指南，遵循该规范是专业代码的隐性要求。"
+  },
+  {
+    "rubric_id": "R13",
+    "rubric_content": "代码没有引入不必要的第三方依赖（如 numpy, pandas 等），仅使用标准库。",
+    "type": "Efficiency & performance",
+    "necessity": "Implicit",
+    "rationale": "对于简单的模拟任务，引入外部依赖会增加环境复杂性，保持依赖最小化是良好的工程实践。"
+  },
+  {
+    "rubric_id": "R14",
+    "rubric_content": "代码正确且合理地使用了 Python 标准库（例如使用 collections.deque 进行队列操作）。",
+    "type": "Efficiency & performance",
+    "necessity": "Implicit",
+    "rationale": "正确选择标准库数据结构（如 deque vs list）直接影响代码的性能和语义准确性。"
+  },
+  {
+    "rubric_id": "R15",
+    "rubric_content": "输出格式清晰、一致，易于阅读和解析（例如使用 f-string 进行格式化）。",
+    "type": "Readability & Maintainability",
+    "necessity": "Implicit",
+    "rationale": "良好的日志输出格式能提升用户体验和调试效率，是隐性的质量要求。"
   }
 ]

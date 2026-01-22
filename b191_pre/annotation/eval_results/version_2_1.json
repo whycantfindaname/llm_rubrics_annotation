@@ -1,62 +1,92 @@
 [
   {
     "rubric_id": "R01",
-    "rubric_content": "代码完全遵循了题目中的所有显式重构要求：包括将类名和变量名重构为有意义的名称、添加逻辑部分的注释（非逐行）、在每一轮开始时显示状态、包含每轮的行动描述、以及提供一段高层次的总结段落。",
+    "rubric_content": "代码将原本简写的类名（如 Sim）和变量名（如 rs, ns, nd）重构为具有明确语义的有意义名称。",
     "score": "1",
-    "rationale": "已将类/变量重命名为语义化名称（如 TubeRideSimulation、available_single_tubes、active_rides 等），并通过类/方法文档字符串与分段注释解释关键逻辑；run() 在每轮开始先打印 Turn X Start 与当前 Line/Active Rides 状态，随后输出本轮 Action；类文档字符串提供了对模拟目的与规则的高层次概述。"
+    "rationale": "相较原始 Sim/rs/ns/nd 等简写，新实现使用了 TubeRideSimulation、available_single_tubes、active_rides、wait_skips 等更具语义的命名，提升可读性。"
   },
   {
     "rubric_id": "R02",
-    "rubric_content": "重构过程中保持了模拟器的核心逻辑完全不变（如双人管优先、元音犹豫规则等），未引入任何业务逻辑上的修改（允许将硬编码参数化，只要默认行为一致）。",
+    "rubric_content": "代码为每个逻辑部分添加了注释，且注释不是逐行的（not line by line），而是针对逻辑块的说明。",
     "score": "1",
-    "rationale": "仍保持“优先分配双人管、否则分配单人管；元音开头乘客可犹豫跳过最多两次；骑行结束后回到队尾并释放管道”等核心规则；将最大跳过次数抽为 max_wait_skips 参数，但 main() 仍传入原值 2，默认行为一致。"
+    "rationale": "代码在关键逻辑块处提供了成段说明（如“Track how many times…/Try to assign…/Priority…/Update active rides…”等），并配合方法/类文档字符串解释整体与局部逻辑，未进行逐行注释。"
   },
   {
     "rubric_id": "R03",
-    "rubric_content": "代码能够无错误地运行，并产生预期的模拟输出。",
+    "rubric_content": "代码在每一轮模拟开始时，能够显示当前的状态（如队列 Line 和进行中的骑行 Riders）。",
     "score": "1",
-    "rationale": "实际运行 src.sim_gemini3_chosen.main() 可正常执行多轮模拟输出，包含每轮开始的状态与行动描述，未出现语法或运行时错误。"
+    "rationale": "run() 在每轮开始打印“Turn X Start:”并调用 display_status() 输出 Line 与 Active Rides，满足“每轮开始展示状态”。"
   },
   {
     "rubric_id": "R04",
-    "rubric_content": "代码在函数定义中使用了 Python 类型提示（Type Hints）以增强代码的可读性和可维护性。",
-    "score": "0",
-    "rationale": "函数/方法定义未添加类型注解（如 __init__、is_vowel_rider、run_turn、run 等均无参数与返回值类型标注）。"
+    "rubric_content": "代码在每一轮模拟中包含了具体的行动描述（turn action），明确说明了该轮发生了什么（如分配了什么管道给谁）。",
+    "score": "1",
+    "rationale": "run_turn() 返回本轮动作描述（如 Assigned double/single tube to [...]），run() 将其作为“Action:”输出，行动信息明确。"
   },
   {
     "rubric_id": "R05",
-    "rubric_content": "代码使用 Python 的 Enum 类来定义管道类型（如 'single', 'double'），而不是使用硬编码的字符串字面量。",
-    "score": "0",
-    "rationale": "管道类型仍以字符串字面量表示（如 'single'、'double'），未使用 Enum 进行集中定义。"
+    "rubric_content": "代码提供了一段高层次的简短段落（brief high-lev paragraph），解释模拟器的目的和工作原理。",
+    "score": "1",
+    "rationale": "类 TubeRideSimulation 的文档字符串以段落形式概述了模拟目的、双人管优先、元音犹豫、骑行结束回队尾等工作机制。"
   },
   {
     "rubric_id": "R06",
-    "rubric_content": "代码将魔法数值（如元音集合 'AEIOU'、最大跳过次数等）定义为类常量或模块级常量，而不是在逻辑中硬编码。",
-    "score": "0",
-    "rationale": "元音集合仍在初始化中通过 set('AEIOU') 直接构造，且示例中的最大跳过次数等值未抽取为模块/类常量。"
+    "rubric_content": "代码重构过程中保持了模拟器的核心业务逻辑完全不变（如双人管优先、元音犹豫规则等）。",
+    "score": "1",
+    "rationale": "仍保持“优先分配双人管（取队首两人）、否则分配单人管；元音开头乘客可在单人管分配时犹豫跳过最多两次；骑行倒计时结束后回到队尾并释放管道并重置跳过计数”等核心规则，重构主要体现为命名、结构化输出与注释增强。"
   },
   {
     "rubric_id": "R07",
-    "rubric_content": "代码的文档字符串遵循标准的结构化格式（如 Google 或 NumPy 风格），包含 Args 和 Returns 的详细说明。",
-    "score": "0",
-    "rationale": "虽添加了文档字符串，但未采用 Google/NumPy 等结构化格式，且缺少规范的 Args/Returns 分节说明。"
+    "rubric_content": "代码能够无错误地运行，并产生完整的模拟输出。",
+    "score": "1",
+    "rationale": "src/sim_gemini3_chosen.py 包含 main() 入口，导入调用可正常执行并持续输出多轮模拟状态与动作描述，未出现语法或运行时错误。"
   },
   {
     "rubric_id": "R08",
-    "rubric_content": "代码风格严格遵循 PEP 8 规范（如变量命名 snake_case，缩进，空格使用等）。",
+    "rubric_content": "代码在函数和方法定义中使用了 Python 类型提示（Type Hints）。",
     "score": "0",
-    "rationale": "整体风格较规范，但存在明显的 PEP 8 严格性问题（如较长的函数签名与多处超长行），因此不满足“严格遵循”。"
+    "rationale": "类方法（如 __init__、is_vowel_rider、run_turn、display_status、run）均未标注参数与返回值类型。"
   },
   {
     "rubric_id": "R09",
-    "rubric_content": "代码正确使用了 Python 标准库且没有引入不必要的第三方依赖。",
-    "score": "1",
-    "rationale": "仅使用 collections.deque 等标准库能力来维护队列与模拟状态，未引入任何第三方依赖。"
+    "rubric_content": "代码使用 Python 的 Enum 类来定义管道类型（如 'single', 'double'），而非使用硬编码的字符串字面量。",
+    "score": "0",
+    "rationale": "active_rides 中仍使用 'single'/'double' 字符串表示管道类型，未引入 Enum 统一管理。"
   },
   {
     "rubric_id": "R10",
-    "rubric_content": "输出格式清晰、一致，易于阅读和解析（例如使用 f-string 进行格式化输出）。",
+    "rubric_content": "代码将魔法数值（如元音集合 'AEIOU'、最大跳过次数等）定义为类常量或模块级常量。",
+    "score": "0",
+    "rationale": "元音集合仍在初始化中通过 set('AEIOU') 直接构造，示例配置（如 main 中的 2、5、4 等）也未抽取为模块/类常量。"
+  },
+  {
+    "rubric_id": "R11",
+    "rubric_content": "代码的文档字符串（Docstrings）遵循标准的结构化格式（如 Google 或 NumPy 风格），包含 Args 和 Returns 的说明。",
+    "score": "0",
+    "rationale": "虽存在类/方法文档字符串，但未采用 Google/NumPy 的结构化分节（Args/Returns）来规范说明接口。"
+  },
+  {
+    "rubric_id": "R12",
+    "rubric_content": "代码风格严格遵循 PEP 8 规范（如变量命名 snake_case，缩进，空格使用等）。",
+    "score": "0",
+    "rationale": "整体缩进与命名较规范，但存在明显不满足“严格遵循”的情况（例如多个函数签名与长字符串行长度过长）。"
+  },
+  {
+    "rubric_id": "R13",
+    "rubric_content": "代码没有引入不必要的第三方依赖（如 numpy, pandas 等），仅使用标准库。",
     "score": "1",
-    "rationale": "每轮输出包含清晰的轮次标题、Line/Active Rides 状态与 Action 行，并使用 f-string 统一格式化，且用分隔线分隔轮次，便于阅读与解析。"
+    "rationale": "仅使用 collections.deque 等标准库组件完成队列模拟，未引入第三方依赖。"
+  },
+  {
+    "rubric_id": "R14",
+    "rubric_content": "代码正确且合理地使用了 Python 标准库（例如使用 collections.deque 进行队列操作）。",
+    "score": "1",
+    "rationale": "使用 deque 存储队列并通过 popleft()/append() 完成高效的队首出队与队尾入队操作，符合队列语义且实现合理。"
+  },
+  {
+    "rubric_id": "R15",
+    "rubric_content": "输出格式清晰、一致，易于阅读和解析（例如使用 f-string 进行格式化）。",
+    "score": "1",
+    "rationale": "每轮输出包含统一的轮次标题、Line/Active Rides 状态与 Action 行，并用分隔线分割轮次，且采用 f-string 格式化，便于阅读与解析。"
   }
 ]
